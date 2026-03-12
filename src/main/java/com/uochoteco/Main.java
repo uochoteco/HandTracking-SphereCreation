@@ -9,10 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
-//import com.google.mediapipe.tasks.vision.handlandmarker.handLandmarker;
-//import com.google.mediapipe.tasks.vision.handlandmarker.handLandmarkerResult;
-//import com.google.mediapipe.tasks.vision.handlandmarker.handLandmarker.HandLandmarkerOptions;
-//import com.google.mediapipe.tasks.core.BaseOptions;
+import com.google.mediapipe.tasks.vision.handlandmarker.handLandmarker;
+import com.google.mediapipe.tasks.vision.handlandmarker.handLandmarkerResult;
+import com.google.mediapipe.tasks.vision.handlandmarker.handLandmarker.HandLandmarkerOptions;
+import com.google.mediapipe.tasks.core.BaseOptions;
 
 public class Main extends JPanel {
 
@@ -37,6 +37,9 @@ public class Main extends JPanel {
                 return;
             }
         
+        HandLandmarkerOptions options = HandLandmarkerOptions.builder().setBaseOptions(BaseOptions.builder().setModelAssetPath("hand_landmarker.task").build).setMiniHandDetectionConfidence(0.5f).setRunningMode(com.google.mediapipe.task.vision.core.RunningMode.IMAGE).build();
+        HandLandmarker landmarker = HnadLandmarker.createFromOptions(options);
+
         while(true)
             {
                 if(camera.read(frameMatrix))
